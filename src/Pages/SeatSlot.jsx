@@ -8,6 +8,8 @@ import { Badge, Button } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { GetBus } from "../Redux/tickets/tickets.actions";
 import { AddCart } from "../Redux/cart/cart.actions";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import {
   useDisclosure,
   Modal,
@@ -30,11 +32,13 @@ const SeatSlot = () => {
   const finalRef = useRef(null);
   const CartData = useSelector((state) => state.cartReducer.data);
  
-
+  useEffect(() => {
+    AOS.init();
+  }, []);
   useEffect(() => {
     setSingleData(singlebus);
   
-    console.log("singlebus", singlebus);
+    
   }, []);
 
   dispatch(GetBus(parm.id));
@@ -46,11 +50,10 @@ const SeatSlot = () => {
     } else {
       // If the seat number is not in the selected seats, add it
       setNumber([...Number, num]);
-    }
-    console.log("Number:", Number);
+ 
     localStorage.setItem("seatnumber", Number);
   };
-
+  }
   const handelUpdateSeat = (item) => {
     if (!item.isBooked) {
       handelSeat(item.num);
@@ -72,6 +75,9 @@ const SeatSlot = () => {
               {item.num}
             </Badge>
             <button
+            data-aos="fade-up"
+            data-aos-anchor-placement="center-bottom"
+            data-aos-duration="1200"
               disabled={item.isBooked ? true : false}
               onClick={() => handelSeat(item.num)}
               className={item.isBooked ? "bookedseats" : "emptyseats"}
@@ -131,7 +137,7 @@ const SeatSlot = () => {
         </ModalContent>
       </Modal>
     </div>
-  );
+  ) 
 };
 
 export default SeatSlot;

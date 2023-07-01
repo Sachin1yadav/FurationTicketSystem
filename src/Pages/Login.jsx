@@ -26,8 +26,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const [token, setToken] = useState("");
   const toast = useToast();
- 
-  
+
   useEffect(() => {}, []);
   const user = useSelector((state) => console.log(state.userReducer));
 
@@ -37,22 +36,21 @@ const Login = () => {
       email,
       password,
     };
-    dispatch(login(loginUser,nav));
+    dispatch(login(loginUser, nav));
   };
- 
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      setToken(storedToken);
-    }
- 
+
+  const storedToken = localStorage.getItem("token");
+  if (storedToken) {
+    setToken(storedToken);
+  }
+
   const handleLogout = () => {
     setLoggedIn(false);
     setEmail("");
     setPassword("");
   };
+ 
 
-  console.log("user", users);
-   
   return (
     <Flex padding={4} w="100%">
       <VStack w={"100%"}>

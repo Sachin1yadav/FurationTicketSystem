@@ -28,7 +28,7 @@ const SignupPage = () => {
   const toast = useToast();
   const user = useSelector((state) => state.userReducer.user);
 
-  console.log("user", user);
+ 
 
   const handleSignup = async () => {
     setLoading(true);
