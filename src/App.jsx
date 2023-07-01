@@ -5,13 +5,14 @@ import Home from './Pages/Home'
 import Navbar from './Components/Navbar'
 import Login from './Pages/Login'
 import { AllRoutes } from './Routes/AllRoutes'
+ 
   
 function App() {
  
   return (
     <div>
       {/* <Login/> */}
-     
+     {/* <Checkout/> */}
       <Navbar/>
       <AllRoutes/>
     </div>

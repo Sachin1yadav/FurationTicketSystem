@@ -8,8 +8,7 @@
 }
 
 .BusDiv {
- 
-  gap: 20px;
+   gap: 20px;
   padding: 10px;
   display: flex;
   flex-wrap: wrap;
@@ -101,4 +100,90 @@
   width: 250px;
   margin: auto;
   height: 150px;
+}
+
+form{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+  display: flex;
+  padding: 15px 20px;
+  gap:10px;
+  width: 95%;
+  margin: auto;
+}
+
+.FilterDiv{
+  /* border: 1px solid red; */
+  text-align: end;
+  width: 95%;
+  margin: auto;
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  align-items: end;
+  justify-content: end;
+}
+.FilterDiv button{
+ border: 1px solid gray;
+ padding: 4px 10px;
+ box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+ border-radius: 5px;
+}
+
+
+
+ @media (max-width: 768px) {
+  .AllTicketsMainDiv {
+  
+    width: 90%;
+  
+    min-height: 400px;
+    margin: auto;
+    margin-top: 100px;
+  }
+  .MainDetailsDiv{
+     width: 90%;
+    }
+    .BusDiv {
+    width: 100%;
+     }
+}
+
+/* CSS code for mobile screens */
+@media (max-width: 480px) {
+  .AllTicketsMainDiv {
+  
+    width: 95%;
+  
+    min-height: 400px;
+    margin: auto;
+    margin-top: 100px;
+   }
+  .MainDetailsDiv{
+   width: 90%;
+  }
+  .BusDiv {
+  width: 100%;
+   }
+   form{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    display: flex;
+    padding: 15px 20px;
+    gap:10px;
+    flex-direction:column;
+    width: 95%;
+    margin: auto;
+  }
+  .FilterDiv{
+    /* border: 1px solid red; */
+    text-align: end;
+    width: 95%;
+    margin: auto;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    align-items: end;
+    justify-content: center;
+  }
 }

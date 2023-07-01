@@ -1,8 +1,5 @@
- 
-
 import PrivateRoute from "./PrivateRoute";
 import Login from "../Pages/Login";
-import Cart from "../Pages/Cart";
 import SignupPage from "../Pages/SignupPage";
 import SeatSlot from "../Pages/SeatSlot";
 import Home from "../Pages/Home";
@@ -20,14 +17,11 @@ export const AllRoutes = () => {
       <Route path="/alltickets" element={<AllTickets />} />
       <Route path="/myticket" element={<MyTicket />} />
 
-      
-
-      
       <Route
-        path="/cart"
+        path="/myticket"
         element={
           <PrivateRoute>
-            <Cart />
+            <MyTicket />
           </PrivateRoute>
         }
       />

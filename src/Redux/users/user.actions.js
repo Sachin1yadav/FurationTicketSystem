@@ -35,7 +35,6 @@ export const login = (userData, nav) => async (dispatch) => {
     );
     console.log("users", user);
     if (user) {
-      
       localStorage.setItem("token", user.password);
       localStorage.setItem("user", JSON.stringify(user));
       dispatch({ type: LOGIN_SUCCESS, payload: user });
@@ -48,10 +47,5 @@ export const login = (userData, nav) => async (dispatch) => {
   }
 };
 
-
- 
-
-
 // User logout action creator
 export const logout = () => ({ type: LOGOUT });
- 

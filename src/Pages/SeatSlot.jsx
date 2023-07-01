@@ -17,8 +17,10 @@ import {
   ModalFooter,
   ModalCloseButton,
 } from "@chakra-ui/react";
+
 const SeatSlot = () => {
   const parm = useParams();
+ 
   const [singledata, setSingleData] = useState([]);
   const singlebus = useSelector((state) => state.ticketReducer.BUSID);
   const dispatch = useDispatch();
@@ -26,8 +28,12 @@ const SeatSlot = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = useRef(null);
   const finalRef = useRef(null);
+  const CartData = useSelector((state) => state.cartReducer.data);
+ 
+
   useEffect(() => {
     setSingleData(singlebus);
+  
     console.log("singlebus", singlebus);
   }, []);
 
@@ -55,6 +61,7 @@ const SeatSlot = () => {
     <div className="SeatSlotMainDiv">
       <h3>CHOOSE SEATS ACCORDING TO YOUR COMFORT</h3>
       <div className="SeatsDiv">
+        
         {singledata.seats?.map((item, id) => (
           <div
             key={id}
@@ -105,16 +112,17 @@ const SeatSlot = () => {
 
           <ModalFooter>
             <Link to="/myticket">
-            <Button
-              m={"10px"}
-              onClick={() => dispatch(AddCart(singledata, Number))}
-              colorScheme="teal"
-              variant="outline"
-            >
-              Book Seats
-            </Button>
+              <Button
+                m={"10px"}
+                onClick={() =>
+                  dispatch(AddCart(singledata, Number, CartData || []))
+                }
+                colorScheme="teal"
+                variant="outline"
+              >
+                confirm Reservation
+              </Button>
             </Link>
-            
 
             <Button colorScheme="teal" variant="solid" onClick={onClose}>
               Close

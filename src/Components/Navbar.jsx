@@ -16,31 +16,32 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { LOGOUT } from "../Redux/users/user.types";
-
-// import { userLogout } from "../Redux/users/user.actions";
+import { logout } from "../Redux/users/user.actions";
 
 export default function Navbar() {
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const dispatch = useDispatch();
-  const [auth, setAuth] = useState(false);
   const nav = useNavigate();
-  const handelLogout = () => {
-    // dispatch(userLogout());
-    // nav("/");
-  };
+  
+  const Isauth = useSelector((state) => state.userReducer.isAuth);
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
       setToken(storedToken);
-      setAuth(true);
+    } else {
+      setToken("");
     }
-  }, [token]);
+  }, [token])
+
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
     setToken("");
-    setAuth(false);
+    dispatch(logout());
+    nav("/");
   };
+  
 
   return (
     <>
@@ -69,40 +70,8 @@ export default function Navbar() {
 
           <Flex alignItems={"center"}>
             <Stack alignItems={"center"} direction={"row"} spacing={7}>
-              {/* {token ? (
-                <Button onClick={handleLogout}>Logout</Button>
-              ) : (
-                <div style={{ display: "flex", gap: "10px" }}>
-                  {" "}
-                  <Button
-                    display={auth == true ? "none" : "block"}
-                    bg={"red"}
-                    m
-                    color={"white"}
-                    onClick={() => {
-                      nav("/register");
-                    }}
-                  >
-                    Sign up
-                  </Button>
-                  <Button
-                    display={auth == true ? "none" : "block"}
-                    bg={"red"}
-                    m
-                    color={"white"}
-                    onClick={() => {
-                      nav("/login");
-                    }}
-                  >
-                    Login
-                  </Button>
-                </div>
-              )} */}
-              {}
-
               <Menu>
                 <MenuButton
-                  // display={auth == true ? "block" : "none"}
                   as={Button}
                   padding={2}
                   rounded={"full"}
@@ -134,9 +103,15 @@ export default function Navbar() {
                   <br />
                   <MenuDivider />
 
-                  {token ? (
-                    <div >
-                      <p style={{margin:"20px",cursor:"pointer", borderBottom:"1px solid black", textAlign:"start"}}
+                  {Isauth ? (
+                    <div>
+                      <p
+                        style={{
+                          margin: "20px",
+                          cursor: "pointer",
+                          borderBottom: "1px solid black",
+                          textAlign: "start",
+                        }}
                         onClick={() => {
                           nav("/myticket");
                         }}
@@ -148,33 +123,36 @@ export default function Navbar() {
                     </div>
                   ) : (
                     <div>
-                      {" "}
-                      <h2
-                      style={{margin:"20px",cursor:"pointer", borderBottom:"1px solid black", textAlign:"start"}}
-                        display={auth == true ? "none" : "block"}
+                      <p
+                        style={{
+                          margin: "20px",
+                          cursor: "pointer",
+                          borderBottom: "1px solid black",
+                          textAlign: "start",
+                        }}
+                        display={Isauth ? "none" : "block"}
                         onClick={() => {
                           nav("/register");
                         }}
                       >
                         Sign up
-                      </h2>
-                      <h2
-                      style={{margin:"20px",cursor:"pointer", borderBottom:"1px solid black", textAlign:"start"}}
-                        display={auth == true ? "none" : "block"}
+                      </p>
+                      <p
+                        style={{
+                          margin: "20px",
+                          cursor: "pointer",
+                          borderBottom: "1px solid black",
+                          textAlign: "start",
+                        }}
+                        display={Isauth ? "none" : "block"}
                         onClick={() => {
                           nav("/login");
                         }}
                       >
                         Login
-                      </h2>
+                      </p>
                     </div>
                   )}
-                  {/* <MenuItem
-                    display={auth == !true ? "none" : "block"}
-                    onClick={handelLogout}
-                  >
-                    Logout
-                  </MenuItem> */}
                 </MenuList>
               </Menu>
             </Stack>

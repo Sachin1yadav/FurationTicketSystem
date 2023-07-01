@@ -71,6 +71,7 @@ export const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+        
       };
     }
 
@@ -79,6 +80,7 @@ export const cartReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: false,
+        data: payload,
       };
     }
 
